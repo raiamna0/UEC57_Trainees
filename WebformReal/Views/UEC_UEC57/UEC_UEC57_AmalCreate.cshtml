@@ -1,0 +1,250 @@
+﻿@model WebformReal.Models.UEC_UEC57
+
+@{
+    ViewBag.Title = "Amal Steam";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title UEC3</title>
+    <link rel="stylesheet" href="~/Styles/create.css">
+</head>
+<body style="font-size:12px; ">
+    <div class="navbar-container">
+        <div class="navbar">
+            <div class="menu-button" id="menuButton">
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+            </div>
+            <h1>Amal Steam</h1>
+
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlamIndex" ? "active" : "")">@Html.ActionLink("Qarn Alam Steam", "UEC_UEC57_AlamIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AmalIndex" ? "active" : "")">@Html.ActionLink("Amal Steam", "UEC_UEC57_AmalIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_HarweelIndex" ? "active" : "")">@Html.ActionLink("Harweel", "UEC_UEC57_HarweelIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_BirbaIndex" ? "active" : "")">@Html.ActionLink("Birba", "UEC_UEC57_BirbaIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlnoorIndex" ? "active" : "")">@Html.ActionLink("Al noor", "UEC_UEC57_AlnoorIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_RHIPIndex" ? "active" : "")">@Html.ActionLink("RHIP", "UEC_UEC57_RHIPIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_YKPIndex" ? "active" : "")">@Html.ActionLink("YKP", "UEC_UEC57_YKPIndex", "UEC_UEC57")</li>
+            </ul>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <div class="yay">
+                <h3>Create</h3>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group inline-fields" style="justify-content: inherit;">
+                <div class="field-container">
+                    @Html.Label("Corrosion Loops/Unit Name", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.TextAreaFor(model => model.UEC_UEC57_Alam_UnitName, new { @class = "form-control", style = "height: 100px;" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_UnitName, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container" style="width: 500px;">
+                    @Html.Label("Unit Description", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.TextAreaFor(model => model.UEC_UEC57_Alam_UnitDescription, new { @class = "form-control", style = "height: 100px; max-width: 100%;" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_UnitDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group inline-fields">
+
+                <div class="field-container">
+                    @Html.Label("Built As Design", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_BuiltAsDesign, new List<SelectListItem>
+                           {new SelectListItem { Text = "Select Built As Design", Value = " " },
+
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_BuiltAsDesign, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("IOW (Within / Outside)", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_IOW, new List<SelectListItem>
+                               {
+                       new SelectListItem { Text = "Select IOW (Within / Outside)", Value = " " },
+
+                             new SelectListItem { Text = "Yes", Value = "Yes"},
+                               new SelectListItem { Text = "No", Value = "No"},
+                               new SelectListItem { Text = "Blank", Value = " "}
+                               }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_IOW, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("Based Line Inspection", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_BasedLineInspection, new List<SelectListItem>
+                           {
+                         new SelectListItem { Text = "Select Based Line Inspection", Value = " " },
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_BasedLineInspection, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group inline-fields">
+
+                <div class="field-container">
+                    @Html.Label("Compliance With CMM", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_CompliancewithCMM, new List<SelectListItem>
+                           {
+                         new SelectListItem { Text = "Select Compliance With CMM", Value = " " },
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_CompliancewithCMM, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("Inspection Does Not Reveal Any Major Findings", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_Inspection, new List<SelectListItem>
+                           {
+
+                         new SelectListItem { Text = "Select Inspection Does Not Reveal Any Major Findings", Value = " " },
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_Inspection, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("No Temporary Repair (Clamps, Batches)", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_NoTemporaryRepair, new List<SelectListItem>
+                           {
+                    new SelectListItem { Text = "Select No Temporary Repair (Clamps, Batches)", Value = " " },
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_NoTemporaryRepair, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group inline-fields">
+
+                <div class="field-container">
+                    @Html.Label("Compliance To Peformance Standard", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_CompliancetoPerformanceStandard, new List<SelectListItem>
+                           {
+                             new SelectListItem { Text = "Select Compliance To Peformance Standard", Value = " " },
+                         new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_CompliancetoPerformanceStandard, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("FSR / Quality", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_FSR, new List<SelectListItem>
+                           {
+                             new SelectListItem { Text = "Select FSR / Quality", Value = " " },
+                           new SelectListItem { Text = "Yes", Value = "Yes"},
+                           new SelectListItem { Text = "No", Value = "No"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_FSR, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("Risk Level", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_RiskLevel, new List<SelectListItem>
+                           {
+                             new SelectListItem { Text = "Select Risk Level",Value = " " },
+                           new SelectListItem { Text = "High", Value = "High"},
+                           new SelectListItem { Text = "Medium", Value = "Medium"},
+                           new SelectListItem { Text = "Low", Value = "Low"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_RiskLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group inline-fields">
+
+                <div class="field-container">
+                    @Html.Label("Current Status ", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.EditorFor(model => model.UEC_UEC57_Alam_CurrentStatus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_CurrentStatus, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("Threats", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.EditorFor(model => model.UEC_UEC57_Alam_Threats, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_Threats, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container">
+                    @Html.Label("Probability", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_Probability, new List<SelectListItem>
+                           {
+                             new SelectListItem { Text =  "Select Probability",Value = " " },
+                           new SelectListItem { Text = "High", Value = "High"},
+                           new SelectListItem { Text = "Medium", Value = "Medium"},
+                           new SelectListItem { Text = "Low", Value = "Low"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_RiskLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group inline-fields">
+                <div class="field-container">
+                    @Html.Label("Consequence", htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.DropDownListFor(model => model.UEC_UEC57_Alam_Consequence, new List<SelectListItem>
+                           {
+                             new SelectListItem { Text =  "Select Consequence",Value = " " },
+                           new SelectListItem { Text = "High", Value = "High"},
+                           new SelectListItem { Text = "Medium", Value = "Medium"},
+                           new SelectListItem { Text = "Low", Value = "Low"},
+                           new SelectListItem { Text = "Blank", Value = " "}
+                           }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_Consequence, "", new { @class = "text-danger" })
+                </div>
+                <div class="field-container"></div>
+                <div class="field-container"></div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-10 hii button1">
+                <a class="btn btn-group ab" href="@Url.Action("UEC_UEC57_AmalIndex")">Back to List</a>
+                <button type="submit" class="btn btn-primary ab">Create</button>
+            </div>
+
+        </div>
+    }
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.getElementById("menuButton");
+            const menu = document.getElementById("menu");
+            const menuOverlay = document.getElementById("menuOverlay");
+
+
+
+            menuButton.addEventListener("click", function () {
+                menu.classList.toggle("show-menu");
+                menuOverlay.classList.toggle("show-menu-overlay");
+            });
+
+
+
+            menuOverlay.addEventListener("click", function (event) {
+                if (event.target === menuOverlay) {
+                    menu.classList.remove("show-menu");
+                    menuOverlay.classList.remove("show-menu-overlay");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

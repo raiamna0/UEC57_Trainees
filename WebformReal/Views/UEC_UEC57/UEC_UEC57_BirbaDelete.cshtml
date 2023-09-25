@@ -1,0 +1,307 @@
+﻿@model WebformReal.Models.UEC_UEC57
+
+
+@{
+    ViewBag.Title = "Birba";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title UEC3</title>
+    <link rel="stylesheet" href="~/Styles/delete.css">
+</head>
+<body style="font-size:12px; ">
+    <div class="navbar-container">
+        <div class="navbar">
+            <div class="menu-button" id="menuButton">
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+            </div>
+            <h1>Birba</h1>
+            <div class="create-button">
+                @Html.ActionLink("Create New Item", "UEC_UEC57_BirbaCreate", null, new { @class = "create-link" })
+            </div>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlamIndex" ? "active" : "")">@Html.ActionLink("Qarn Alam Steam", "UEC_UEC57_AlamIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AmalIndex" ? "active" : "")">@Html.ActionLink("Amal Steam", "UEC_UEC57_AmalIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_HarweelIndex" ? "active" : "")">@Html.ActionLink("Harweel", "UEC_UEC57_HarweelIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_BirbaIndex" ? "active" : "")">@Html.ActionLink("Birba", "UEC_UEC57_BirbaIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlnoorIndex" ? "active" : "")">@Html.ActionLink("Al noor", "UEC_UEC57_AlnoorIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_RHIPIndex" ? "active" : "")">@Html.ActionLink("RHIP", "UEC_UEC57_RHIPIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_YKPIndex" ? "active" : "")">@Html.ActionLink("YKP", "UEC_UEC57_YKPIndex", "UEC_UEC57")</li>
+            </ul>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+    </div>
+
+
+    <h2 class="confirmation-message transition-color">Are you sure you want to delete this?</h2>
+
+    <div class="card1">
+        <h4 style="text-align:center;">Delete</h4>
+        <div class="row">
+
+            <div class="col-lg-7 mx-auto bg-white rounded shadow">
+
+
+                <div class="table-responsive">
+
+                    <dl class="horizontal1 details2">
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Corrosion Loops / Unit Name"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_UnitName)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Unit Description"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_UnitDescription)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Built As Design"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_BuiltAsDesign)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("IOW (Within / Outside)"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_IOW)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Based Line Inspection"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_BasedLineInspection)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Compliance with CMM"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_CompliancewithCMM)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Inspection Does Not Reveal Any Major Findings  "):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_Inspection)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("No Temporary Repair (Clamps, Batches)"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_NoTemporaryRepair)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Compliance to Performance Standard"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_CompliancetoPerformanceStandard)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("FSR / Quality"):
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UEC_UEC57_Alam_FSR)
+                            </dd>
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("RiskRanking"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_RiskRanking))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_RiskRanking)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("RiskLevel"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_RiskLevel))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_RiskLevel)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("CurrentStatus"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_CurrentStatus))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_CurrentStatus)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Threats"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_Threats))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_Threats)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Probability"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_Probability))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_Probability)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+
+                        </div>
+
+                        <div class="ddata">
+                            <dt>
+                                @Html.DisplayName("Consequence"):
+                            </dt>
+                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_Consequence))
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_Consequence)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd> N/A </dd>
+                            }
+
+
+                        </div>
+                    </dl>
+                    @*<div class="actions">
+                            <a class="btn btn-secondary ab" href="@Url.Action("UEC_UEC57_AlamIndex")">Back To List</a> |
+                            <a class="btn btn-secondary ab" href="@Url.Action("UEC_UEC57_AlamEdit", new { id = Model.UEC_UEC57_Alam_id  })">Edit </a>
+                        </div>*@
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="actions">
+                            <a class="btn btn-secondary ab" href="@Url.Action("UEC_UEC57_BirbaIndex")">Back To List</a> |
+                            <input type="submit" value="Delete" class="btn btn-secondary ab" />
+                        </div>
+                    }
+                </div><!-- End -->
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+ document.addEventListener("DOMContentLoaded", function () {
+     const menuButton = document.getElementById("menuButton");
+     const menu = document.getElementById("menu");
+     const menuOverlay = document.getElementById("menuOverlay");
+
+
+
+     menuButton.addEventListener("click", function () {
+         menu.classList.toggle("show-menu");
+         menuOverlay.classList.toggle("show-menu-overlay");
+     });
+
+
+
+     menuOverlay.addEventListener("click", function (event) {
+         if (event.target === menuOverlay) {
+             menu.classList.remove("show-menu");
+             menuOverlay.classList.remove("show-menu-overlay");
+         }
+     });
+ });
+    </script>
+</body>
+</html>

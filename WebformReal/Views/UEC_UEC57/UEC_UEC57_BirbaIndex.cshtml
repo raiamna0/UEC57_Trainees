@@ -1,0 +1,732 @@
+﻿@model IEnumerable<WebformReal.Models.UEC_UEC57>
+
+@{
+	ViewBag.Title = "Birba";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>@ViewBag.Title UEC3</title>
+    <link rel="stylesheet" href="~/Styles/index.css">
+</head>
+<body style="font-size:12px; ">
+    <div class="navbar-container">
+        <div class="navbar">
+            <div class="menu-button" id="menuButton">
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+                <div class="menu-icon"></div>
+            </div>
+            <h1>Birba </h1>
+            <div class="create-button">
+                @Html.ActionLink("Create New Item", "UEC_UEC57_BirbaCreate", null, new { @class = "create-link" })
+            </div>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlamIndex" ? "active" : "")">@Html.ActionLink("Qarn Alam Steam", "UEC_UEC57_AlamIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AmalIndex" ? "active" : "")">@Html.ActionLink("Amal Steam", "UEC_UEC57_AmalIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_HarweelIndex" ? "active" : "")">@Html.ActionLink("Harweel", "UEC_UEC57_HarweelIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_BirbaIndex" ? "active" : "")">@Html.ActionLink("Birba", "UEC_UEC57_BirbaIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_AlnoorIndex" ? "active" : "")">@Html.ActionLink("Al noor", "UEC_UEC57_AlnoorIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_RHIPIndex" ? "active" : "")">@Html.ActionLink("RHIP", "UEC_UEC57_RHIPIndex", "UEC_UEC57")</li>
+                <li class="@Html.Raw(ViewContext.RouteData.Values["Action"].ToString() == "UEC_UEC57_YKPIndex" ? "active" : "")">@Html.ActionLink("YKP", "UEC_UEC57_YKPIndex", "UEC_UEC57")</li>
+            </ul>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+    </div>
+
+
+    @if (TempData["InsertMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success! </strong>@TempData["InsertMessage"]
+        </div>
+    }
+
+    @if (TempData["UpdateMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["UpdateMessage"]
+        </div>
+    }
+    @if (TempData["DeleteMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["DeleteMessage"]
+        </div>
+    }
+
+
+    <div class="container">
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead class="fixed-header">
+                    <tr>
+                        <th>Sr.</th>
+                        <th>Corrosion Loops / Unit Name</th>
+                        <th>Unit Description</th>
+                        <th>Built As Design</th>
+                        <th>IOW (Within / Outside)</th>
+                        <th>Based Line Inspection</th>
+                        <th>Compliance with CMM</th>
+                        <th>Inspection Does Not Reveal Any Major Findings</th>
+                        <th>No Temporary Repair (Clamps, Batches)</th>
+                        <th>Compliance to Performance Standard</th>
+                        <th>FSR / Quality</th>
+                        <th>Risk Level</th>
+                        <th>Current Status</th>
+                        <th>Threats</th>
+                        <th>Probability</th>
+                        <th>Consequence</th>
+                        <th>Operations</th>
+                    </tr>
+
+
+                    <!-- Blank Row -->
+
+                    <tr class="blank-row">
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td></td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter1" onclick="toggleFilteringCard('filteringCard')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterBuildasDesign" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var uniqueValues = Model.Select(m => m.UEC_UEC57_Alam_BuiltAsDesign).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in uniqueValues)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter2" onclick="toggleFilteringCard('filteringCard2')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard2" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect2" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique2Values = Model.Select(m => m.UEC_UEC57_Alam_IOW).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique2Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter3" onclick="toggleFilteringCard('filterBasedLineInspectionCard')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filterBasedLineInspectionCard" style="display: none;">
+
+                                <label for="filterBasedLineInspection"></label>
+
+                                <select id="filterBasedLineInspectionCardSelect" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique3Values = Model.Select(m => m.UEC_UEC57_Alam_BasedLineInspection).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique3Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter4" onclick="toggleFilteringCard('filteringCard4')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard4" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect4" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique4Values = Model.Select(m => m.UEC_UEC57_Alam_CompliancewithCMM).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique4Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter5" onclick="toggleFilteringCard('filteringCard5')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard5" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect5" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique5Values = Model.Select(m => m.UEC_UEC57_Alam_Inspection).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique5Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter6" onclick="toggleFilteringCard('filteringCard6')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard6" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect6" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique6Values = Model.Select(m => m.UEC_UEC57_Alam_NoTemporaryRepair).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique6Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter7" onclick="toggleFilteringCard('filteringCard7')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard7" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect7" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique7Values = Model.Select(m => m.UEC_UEC57_Alam_CompliancetoPerformanceStandard).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique7Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter8" onclick="toggleFilteringCard('filteringCard8')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard8" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect8" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique8Values = Model.Select(m => m.UEC_UEC57_Alam_FSR).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique8Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter9" onclick="toggleFilteringCard('filteringCard9')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard9" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect9" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique9Values = Model.Select(m => m.UEC_UEC57_Alam_RiskLevel).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique9Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter10" onclick="toggleFilteringCard('filteringCard10')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard10" style="display: none;">
+
+                                <input type="text" id="filterCardSelect10" placeholder="Current Status..." class="filter-select">
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter11" onclick="toggleFilteringCard('filteringCard11')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard11" style="display: none;">
+
+                                <input type="text" id="filterCardSelect11" placeholder="Threats..." class="filter-select" style="width: 100%;">
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter12" onclick="toggleFilteringCard('filteringCard12')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard12" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect12" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique12Values = Model.Select(m => m.UEC_UEC57_Alam_Probability).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique12Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter13" onclick="toggleFilteringCard('filteringCard13')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard13" style="display: none;">
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect13" class="filter-select">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var unique13Values = Model.Select(m => m.UEC_UEC57_Alam_Consequence).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in unique13Values)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
+
+                        <td></td>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+                    @{
+                        int counter = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@item.UEC_UEC57_Alam_UnitName</td>
+                                <td>@item.UEC_UEC57_Alam_UnitDescription</td>
+
+                                <td>@item.UEC_UEC57_Alam_BuiltAsDesign</td>
+                                <td>@item.UEC_UEC57_Alam_IOW</td>
+                                <td>@item.UEC_UEC57_Alam_BasedLineInspection</td>
+                                <td>@item.UEC_UEC57_Alam_CompliancewithCMM</td>
+                                <td>@item.UEC_UEC57_Alam_Inspection</td>
+                                <td>@item.UEC_UEC57_Alam_NoTemporaryRepair</td>
+                                <td>@item.UEC_UEC57_Alam_CompliancetoPerformanceStandard</td>
+                                <td>@item.UEC_UEC57_Alam_FSR</td>
+                                <td>@item.UEC_UEC57_Alam_RiskLevel</td>
+                                <td>@item.UEC_UEC57_Alam_CurrentStatus</td>
+                                <td>@item.UEC_UEC57_Alam_Threats</td>
+                                <td>@item.UEC_UEC57_Alam_Probability</td>
+                                <td>@item.UEC_UEC57_Alam_Consequence</td>
+                                <td class="actions">
+                                    <!-- Delete Button -->
+                                    <a href="@Url.Action("UEC_UEC57_BirbaDelete", new { id = item.UEC_UEC57_Alam_id })" class="action-button delete-button">
+                                        <span class="icon">&#128465;</span> Delete
+                                    </a>
+                                    <!-- Edit Button -->
+                                    <a href="@Url.Action("UEC_UEC57_BirbaEdit", new { id = item.UEC_UEC57_Alam_id })" class="action-button edit-button">
+                                        <span class="icon">&#9998;</span> Edit
+                                    </a>
+                                    <!-- Details Button -->
+                                    <a href="@Url.Action("UEC_UEC57_BirbaDetails", new { id = item.UEC_UEC57_Alam_id })" class="action-button details-button">
+                                        <span class="icon">&#8505;</span> Details
+                                    </a>
+                                </td>
+
+                            </tr>
+                            counter++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+
+        // Menu Button
+
+        const menuButton = document.getElementById("menuButton");
+
+        const menu = document.getElementById("menu");
+
+        const menuOverlay = document.getElementById("menuOverlay");
+
+
+
+        menuButton.addEventListener("click", function () {
+
+            menu.classList.toggle("show-menu");
+
+            menuOverlay.classList.toggle("show-menu-overlay");
+
+        });
+
+
+
+        menuOverlay.addEventListener("click", function (event) {
+
+            if (event.target === menuOverlay) {
+
+                menu.classList.remove("show-menu");
+
+                menuOverlay.classList.remove("show-menu-overlay");
+
+            }
+
+        });
+
+
+
+        function filterTableByColumn(filterInputId, columnIndex) {
+
+            const selectedValue = document.getElementById(filterInputId).value.toLowerCase();
+
+            const tableRows = document.querySelectorAll(".data-table tbody tr");
+
+
+
+            tableRows.forEach(function (row) {
+
+                const cell = row.querySelector(`td:nth-child(${columnIndex})`); // Adjust the column index accordingly
+
+
+
+                if (cell) {
+
+                    const cellValue = cell.textContent.toLowerCase();
+
+                    const showRow = selectedValue === "" || cellValue.includes(selectedValue);
+
+                    row.style.display = showRow ? "" : "none";
+
+                } else {
+
+
+                }
+
+            });
+
+        }
+
+        // Function to toggle the table based on selected column
+
+        function toggleFilteringCard(cardId) {
+
+            const card = document.getElementById(cardId);
+
+            card.style.display = card.style.display === "none" ? "block" : "none";
+
+        }
+
+        //4th column
+
+        document.getElementById("filterBuildasDesign").addEventListener("change", function () {
+
+            filterTableByColumn("filterBuildasDesign", 4);
+
+        });
+
+
+
+        ///5th column
+
+        document.getElementById("filterCardSelect2").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect2", 5);
+
+        });
+
+        ///6th column
+
+        document.getElementById("filterBasedLineInspectionCard").addEventListener("change", function () {
+
+            filterTableByColumn("filterBasedLineInspectionCardSelect", 6);
+
+        });
+
+        ///7th column
+
+        document.getElementById("filterCardSelect4").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect4", 7);
+
+        });
+
+        ///8th column
+
+        document.getElementById("filterCardSelect5").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect5", 8);
+
+
+
+        });
+
+        ///9th column
+
+        document.getElementById("filterCardSelect6").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect6", 9);
+
+        });
+
+        ///10th column
+
+        document.getElementById("filterCardSelect7").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect7", 10);
+
+        });
+
+        ///11th column
+
+        document.getElementById("filterCardSelect8").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect8", 11);
+
+        });
+
+
+
+        ///12th column
+
+        document.getElementById("filterCardSelect9").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect9", 12);
+
+        });
+
+        ///13th column
+
+        document.getElementById("filterCardSelect10").addEventListener("input", function () {
+
+            filterTableByColumn("filterCardSelect10", 13);
+
+        });
+
+        ///14th column
+
+        document.getElementById("filterCardSelect11").addEventListener("input", function () {
+
+            filterTableByColumn("filterCardSelect11", 14);
+
+        });
+
+
+
+        ///15th column
+
+        document.getElementById("filterCardSelect12").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect12", 15);
+
+        });
+
+        ///16th column
+
+        document.getElementById("filterCardSelect13").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect13", 16);
+
+        });
+
+
+
+
+
+    </script>
+</body>
+</html>
+
