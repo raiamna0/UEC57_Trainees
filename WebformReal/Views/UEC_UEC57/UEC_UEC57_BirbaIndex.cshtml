@@ -96,7 +96,37 @@
 
                         <td></td>
 
-                        <td></td>
+                        <td class="filter-column" colspan="1">
+
+                            <div class="filter-icon" id="filter0" onclick="toggleFilteringCard('filteringCard0')">&#9660;</div>
+
+                            <div class="filter-dropdown" id="filteringCard0" style="display: none" ;>
+
+                                <label for="filterSheetName"></label>
+
+                                <select id="filterCardSelect0" class="filter-select" style="width: 100%">
+
+                                    <option value="">All</option>
+
+                                    @{
+
+                                        var uniqueValues1 = Model.Select(m => m.UEC_UEC57_Alam_UnitName).Where(val => !string.IsNullOrEmpty(val)).Distinct().ToList();
+
+                                        foreach (var item in uniqueValues1)
+
+                                        {
+
+                                            <option value="@item">@item</option>
+
+                                        }
+
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        </td>
 
                         <td></td>
 
@@ -569,36 +599,33 @@
 
 
 
+        const selectedValues = {};
+        // Function to filter the table by column
         function filterTableByColumn(filterInputId, columnIndex) {
 
             const selectedValue = document.getElementById(filterInputId).value.toLowerCase();
-
+            selectedValues[columnIndex] = selectedValue; // Store the selected value for this column
             const tableRows = document.querySelectorAll(".data-table tbody tr");
 
-
-
             tableRows.forEach(function (row) {
+                let showRow = true;
 
-                const cell = row.querySelector(`td:nth-child(${columnIndex})`); // Adjust the column index accordingly
-
-
-
-                if (cell) {
-
-                    const cellValue = cell.textContent.toLowerCase();
-
-                    const showRow = selectedValue === "" || cellValue.includes(selectedValue);
-
-                    row.style.display = showRow ? "" : "none";
-
-                } else {
-
-
+                // Loop through the selected values for each column and apply "AND" logic
+                for (const colIndex in selectedValues) {
+                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
+                    if (cell) {
+                        const cellValue = cell.textContent.toLowerCase();
+                        const filterValue = selectedValues[colIndex];
+                        if (filterValue !== "" && !cellValue.includes(filterValue)) {
+                            showRow = false;
+                            break; // If any filter condition fails, hide the row
+                        }
+                    }
                 }
-
+                row.style.display = showRow ? "" : "none";
             });
-
         }
+
 
         // Function to toggle the table based on selected column
 
@@ -609,6 +636,13 @@
             card.style.display = card.style.display === "none" ? "block" : "none";
 
         }
+        //2nd column
+
+        document.getElementById("filterCardSelect0").addEventListener("change", function () {
+
+            filterTableByColumn("filterCardSelect0", 2);
+
+        });
 
         //4th column
 
