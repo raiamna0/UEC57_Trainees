@@ -9,13 +9,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/Styles/details.css">
+    <link rel="stylesheet" href="~/Content/UEC_UEC57.css">
+
+
 
     <title>@ViewBag.Title UEC3</title>
- 
+
 </head>
 <body style="font-size:12px; ">
- 
+
     <div class="navbar-container">
         <div class="navbar">
             <div class="menu-button" id="menuButton">
@@ -42,17 +44,17 @@
         <div class="menu-overlay" id="menuOverlay"></div>
     </div>
 
-    
+
 
     <div class="card1">
         <h4 style="text-align:center;">Details</h4>
         <div class="row">
-            
+
             <div class="col-lg-7 mx-auto bg-white rounded shadow">
-                
+
 
                 <div class="table-responsive">
-                
+
                     <dl class="horizontal1 details2">
                         <div class="ddata">
                             <dt>
@@ -153,23 +155,8 @@
                                 @Html.DisplayFor(model => model.UEC_UEC57_Alam_FSR)
                             </dd>
                         </div>
-                        
-                        <div class="ddata">
-                            <dt>
-                                @Html.DisplayName("RiskRanking"):
-                            </dt>
-                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_RiskRanking))
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_RiskRanking)
-                                </dd>
-                            }
-                            else
-                            {
-                                <dd> N/A </dd>
-                            }
 
-                        </div>
+                        
 
                         <div class="ddata">
                             <dt>
@@ -186,7 +173,7 @@
                                 <dd> N/A </dd>
                             }
 
-                           
+
                         </div>
 
                         <div class="ddata">
@@ -204,7 +191,7 @@
                                 <dd> N/A </dd>
                             }
 
-                           
+
                         </div>
 
                         <div class="ddata">
@@ -222,7 +209,7 @@
                                 <dd> N/A </dd>
                             }
 
-                          
+
                         </div>
 
                         <div class="ddata">
@@ -240,7 +227,7 @@
                                 <dd> N/A </dd>
                             }
 
-                            
+
                         </div>
 
                         <div class="ddata">
@@ -258,7 +245,7 @@
                                 <dd> N/A </dd>
                             }
 
-                           
+
                         </div>
                     </dl>
                     <div class="actions">
@@ -271,7 +258,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -286,7 +273,7 @@
                 menuOverlay.classList.toggle("show-menu-overlay");
             });
 
-            
+
 
             menuOverlay.addEventListener("click", function (event) {
                 if (event.target === menuOverlay) {

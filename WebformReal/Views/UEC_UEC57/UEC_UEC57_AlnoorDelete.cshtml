@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title UEC3</title>
-    <link rel="stylesheet" href="~/Styles/delete.css">
+    <link rel="stylesheet" href="~/Content/UEC_UEC57.css">
 </head>
 <body style="font-size:12px; ">
     <div class="navbar-container">
@@ -43,7 +43,7 @@
 
     <h2 class="confirmation-message transition-color">Are you sure you want to delete this?</h2>
 
-    <div class="card1">
+    <div class="card2">
         <h4 style="text-align:center;">Delete</h4>
         <div class="row">
 
@@ -153,22 +153,7 @@
                             </dd>
                         </div>
 
-                        <div class="ddata">
-                            <dt>
-                                @Html.DisplayName("RiskRanking"):
-                            </dt>
-                            @if (!string.IsNullOrWhiteSpace(Model.UEC_UEC57_Alam_RiskRanking))
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.UEC_UEC57_Alam_RiskRanking)
-                                </dd>
-                            }
-                            else
-                            {
-                                <dd> N/A </dd>
-                            }
-
-                        </div>
+                        
 
                         <div class="ddata">
                             <dt>
@@ -269,8 +254,8 @@
                         @Html.AntiForgeryToken()
 
                         <div class="actions">
-                            <a class="btn btn-secondary ab" href="@Url.Action("UEC_UEC57_AlnoorIndex")">Back To List</a> |
-                            <input type="submit" value="Delete" class="btn btn-secondary ab" />
+                            <a class="btn btn-secondary aab" href="@Url.Action("UEC_UEC57_AlnoorIndex")">Back To List</a> |
+                            <input type="submit" value="Delete" class="btn btn-secondary aab" />
                         </div>
                     }
                 </div><!-- End -->
