@@ -889,10 +889,7 @@
                                 <td>@item.UEC_UEC57_Alam_Probability</td>
                                 <td>@item.UEC_UEC57_Alam_Consequence</td>
                                 <td class="actions">
-                                    <!-- Delete Button -->
-                                    <a href="@Url.Action("UEC_UEC57_AmalDelete", new { id = item.UEC_UEC57_Alam_id })" class="action-button delete-button">
-                                        <span class="icon">&#128465;</span> Delete
-                                    </a>
+
                                     <!-- Edit Button -->
                                     <a href="@Url.Action("UEC_UEC57_AmalEdit", new { id = item.UEC_UEC57_Alam_id })" class="action-button edit-button">
                                         <span class="icon">&#9998;</span> Edit
@@ -900,6 +897,10 @@
                                     <!-- Details Button -->
                                     <a href="@Url.Action("UEC_UEC57_AmalDetails", new { id = item.UEC_UEC57_Alam_id })" class="action-button details-button">
                                         <span class="icon">&#8505;</span> Details
+                                    </a>
+                                    <!-- Delete Button -->
+                                    <a href="@Url.Action("UEC_UEC57_AmalDelete", new { id = item.UEC_UEC57_Alam_id })" class="action-button delete-button">
+                                        <span class="icon">&#128465;</span> Delete
                                     </a>
                                 </td>
 
