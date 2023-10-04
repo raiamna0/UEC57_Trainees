@@ -368,7 +368,7 @@
             <div class="form-group inline-fields" style="justify-content: inherit;">
                 <div class="field-container">
                     @Html.Label("Corrosion Loops/Unit Name", htmlAttributes: new { @class = "control-label col-md-6" })
-                    @Html.TextAreaFor(model => model.UEC_UEC57_Alam_UnitName, new { @class = "form-control", style = "height: 100px;" })
+                    @Html.TextAreaFor(model => model.UEC_UEC57_Alam_UnitName, new { @class = "form-control", style = "height: 100px; max-width: 100%;" })
                     @Html.ValidationMessageFor(model => model.UEC_UEC57_Alam_UnitName, "", new { @class = "text-danger" })
                 </div>
                 <div class="field-container" style="width: 500px;">
