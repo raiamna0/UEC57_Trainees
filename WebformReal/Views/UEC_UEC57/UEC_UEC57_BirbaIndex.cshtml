@@ -922,10 +922,6 @@
     </div>
 
 
-
-
-
-
     <script>
 
         // Menu Button
@@ -961,34 +957,6 @@
         });
 
 
-        const selectedValues = {};
-        // Function to filter the table by column
-        function filterTableByColumn(filterInputId, columnIndex) {
-
-            const selectedValue = document.getElementById(filterInputId).value.toLowerCase();
-            selectedValues[columnIndex] = selectedValue; // Store the selected value for this column
-            const tableRows = document.querySelectorAll(".data-table tbody tr");
-
-            tableRows.forEach(function (row) {
-                let showRow = true;
-
-                // Loop through the selected values for each column and apply "AND" logic
-                for (const colIndex in selectedValues) {
-                    const cell = row.querySelector(`td:nth-child(${colIndex})`);
-                    if (cell) {
-                        const cellValue = cell.textContent.toLowerCase();
-                        const filterValue = selectedValues[colIndex];
-                        if (filterValue !== "" && !cellValue.includes(filterValue)) {
-                            showRow = false;
-                            break; // If any filter condition fails, hide the row
-                        }
-                    }
-                }
-                row.style.display = showRow ? "" : "none";
-            });
-        }
-
-
         // Function to toggle the table based on selected column
 
         function toggleFilteringCard(cardId) {
@@ -998,124 +966,9 @@
             card.style.display = card.style.display === "none" ? "block" : "none";
 
         }
-        //2nd column
-
-        document.getElementById("filterCardSelect0").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect0", 2);
-
-        });
-        //4th column
-
-        document.getElementById("filterBuildasDesign").addEventListener("change", function () {
-
-            filterTableByColumn("filterBuildasDesign", 4);
-
-        });
-
-        ///5th column
-
-        document.getElementById("filterCardSelect2").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect2", 5);
-
-        });
-
-        ///6th column
-
-        document.getElementById("filterBasedLineInspectionCard").addEventListener("change", function () {
-
-            filterTableByColumn("filterBasedLineInspectionCardSelect", 6);
-
-        });
-
-        ///7th column
-
-        document.getElementById("filterCardSelect4").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect4", 7);
-
-        });
-
-        ///8th column
-
-        document.getElementById("filterCardSelect5").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect5", 8);
 
 
-
-        });
-
-        ///9th column
-
-        document.getElementById("filterCardSelect6").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect6", 9);
-
-        });
-
-        ///10th column
-
-        document.getElementById("filterCardSelect7").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect7", 10);
-
-        });
-
-        ///11th column
-
-        document.getElementById("filterCardSelect8").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect8", 11);
-
-        });
-
-
-
-        ///12th column
-
-        document.getElementById("filterCardSelect9").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect9", 12);
-
-        });
-
-        ///13th column
-
-        document.getElementById("filterCardSelect10").addEventListener("input", function () {
-
-            filterTableByColumn("filterCardSelect10", 13);
-
-        });
-
-        ///14th column
-
-        document.getElementById("filterCardSelect11").addEventListener("input", function () {
-
-            filterTableByColumn("filterCardSelect11", 14);
-
-        });
-
-
-
-        ///15th column
-
-        document.getElementById("filterCardSelect12").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect12", 15);
-
-        });
-
-        ///16th column
-
-        document.getElementById("filterCardSelect13").addEventListener("change", function () {
-
-            filterTableByColumn("filterCardSelect13", 16);
-
-        });
-
-        // JavaScript for pagination goes here
+        // JavaScript for filtering and pagination goes here
         const table = document.querySelector(".data-table");
         const rowsPerPage = 10; // Adjust the number of rows per page
         let currentPage = 1;
@@ -1124,17 +977,92 @@
         const currentPageElement = document.getElementById("currentPage");
         const totalPagesElement = document.getElementById("totalPages");
 
-        function showPage(page) {
+
+
+
+
+        function updateTableVisibility() {
             const rows = table.tBodies[0].rows;
+            let visibleRowCount = -1;
+
             for (let i = 0; i < rows.length; i++) {
-                rows[i].style.display = i >= (page - 1) * rowsPerPage && i < page * rowsPerPage ? "" : "none";
+                const row = rows[i];
+                const shouldShowRow = shouldShowRowBasedOnFilters(row);
+
+                if (shouldShowRow) {
+                    visibleRowCount++;
+                    if (visibleRowCount >= (currentPage - 1) * rowsPerPage && (visibleRowCount) < currentPage * rowsPerPage) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                } else {
+                    row.style.display = "none";
+                }
+                // Scroll to the top of the viewport
+                window.scrollTo(0, 0);
             }
 
-            currentPageElement.textContent = `Page ${page}`;
+            totalPages = Math.ceil(visibleRowCount / rowsPerPage);
             updatePaginationButtons();
+        }
 
-            // Scroll to the top of the viewport
-            window.scrollTo(0, 0);
+        function shouldShowRowBasedOnFilters(row) {
+            // Implement your filtering logic here
+            // Return true if the row should be displayed based on filters, false otherwise
+            const filter0 = document.getElementById("filterCardSelect0").value.toLowerCase();
+            const filter1 = document.getElementById("filterBuildasDesign").value.toLowerCase();
+            const filter2 = document.getElementById("filterCardSelect2").value.toLowerCase();
+            const filter3 = document.getElementById("filterBasedLineInspectionCardSelect").value.toLowerCase();
+            const filter4 = document.getElementById("filterCardSelect4").value.toLowerCase();
+            const filter5 = document.getElementById("filterCardSelect5").value.toLowerCase();
+            const filter6 = document.getElementById("filterCardSelect6").value.toLowerCase();
+            const filter7 = document.getElementById("filterCardSelect7").value.toLowerCase();
+            const filter8 = document.getElementById("filterCardSelect8").value.toLowerCase();
+            const filter9 = document.getElementById("filterCardSelect9").value.toLowerCase();
+            const filter10 = document.getElementById("filterCardSelect10").value.toLowerCase();
+            const filter11 = document.getElementById("filterCardSelect11").value.toLowerCase();
+            const filter12 = document.getElementById("filterCardSelect12").value.toLowerCase();
+            const filter13 = document.getElementById("filterCardSelect13").value.toLowerCase();
+            // Add more filters as needed
+
+            // Get the cell values from the row (adjust the index as per your table structure)
+            const cellValue0 = row.cells[1].textContent.toLowerCase(); // Example for the 2nd column
+            const cellValue1 = row.cells[3].textContent.toLowerCase(); // Example for the 4th column
+            const cellValue2 = row.cells[4].textContent.toLowerCase(); // Example for the 5th column
+            const cellValue3 = row.cells[5].textContent.toLowerCase(); // Example for the 6th column
+            const cellValue4 = row.cells[6].textContent.toLowerCase(); // Example for the 7th column
+            const cellValue5 = row.cells[7].textContent.toLowerCase(); // Example for the 8th column
+            const cellValue6 = row.cells[8].textContent.toLowerCase(); // Example for the 9th column
+            const cellValue7 = row.cells[9].textContent.toLowerCase(); // Example for the 10th column
+            const cellValue8 = row.cells[10].textContent.toLowerCase(); // Example for the 11th column
+            const cellValue9 = row.cells[11].textContent.toLowerCase(); // Example for the 12th column
+            const cellValue10 = row.cells[12].textContent.toLowerCase(); // Example for the 13th column
+            const cellValue11 = row.cells[13].textContent.toLowerCase(); // Example for the 14th column
+            const cellValue12 = row.cells[14].textContent.toLowerCase(); // Example for the 15th column
+            const cellValue13 = row.cells[15].textContent.toLowerCase(); // Example for the 16th column
+            // Add more cell values as needed
+
+            // Implement your filtering logic here
+            // For example, you can use simple string.includes() checks
+            const filter0Matches = filter0 === "" || cellValue0.includes(filter0);
+            const filter1Matches = filter1 === "" || cellValue1.includes(filter1);
+            const filter2Matches = filter2 === "" || cellValue2.includes(filter2);
+            const filter3Matches = filter3 === "" || cellValue3.includes(filter3);
+            const filter4Matches = filter4 === "" || cellValue4.includes(filter4);
+            const filter5Matches = filter5 === "" || cellValue5.includes(filter5);
+            const filter6Matches = filter6 === "" || cellValue6.includes(filter6);
+            const filter7Matches = filter7 === "" || cellValue7.includes(filter7);
+            const filter8Matches = filter8 === "" || cellValue8.includes(filter8);
+            const filter9Matches = filter9 === "" || cellValue9.includes(filter9);
+            const filter10Matches = filter10 === "" || cellValue10.includes(filter10);
+            const filter11Matches = filter11 === "" || cellValue11.includes(filter11);
+            const filter12Matches = filter12 === "" || cellValue12.includes(filter12);
+            const filter13Matches = filter13 === "" || cellValue13.includes(filter13);
+            // Add more filter matches as needed
+
+            // Combine the filter matches based on your logic (e.g., AND, OR)
+            return filter0Matches && filter1Matches && filter2Matches && filter3Matches && filter4Matches && filter5Matches && filter6Matches && filter7Matches && filter8Matches && filter9Matches && filter10Matches && filter11Matches && filter12Matches && filter13Matches;
         }
 
         function updatePaginationButtons() {
@@ -1154,18 +1082,24 @@
                 page = totalPages;
             }
             currentPage = page;
-            showPage(currentPage);
+            updateTableVisibility();
+            currentPageElement.textContent = `Page ${currentPage}`;
         }
 
         const prevPageBtn = document.getElementById("prevPage");
         const nextPageBtn = document.getElementById("nextPage");
 
-        totalPages = Math.ceil(table.tBodies[0].rows.length / rowsPerPage);
-        showPage(currentPage);
-        updatePaginationButtons();
+        goToPage(currentPage);
 
         prevPageBtn.addEventListener("click", () => goToPage(currentPage - 1));
         nextPageBtn.addEventListener("click", () => goToPage(currentPage + 1));
+
+        // Add event listeners for filter inputs to trigger filtering when filters change
+        const filterInputs = document.querySelectorAll(".filter-select");
+
+        filterInputs.forEach(function (filterInput) {
+            filterInput.addEventListener("change", updateTableVisibility);
+        });
 
 
     </script>
