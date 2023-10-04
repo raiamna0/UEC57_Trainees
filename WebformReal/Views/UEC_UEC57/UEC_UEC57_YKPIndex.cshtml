@@ -1002,6 +1002,11 @@
             }
 
             totalPages = Math.ceil(visibleRowCount / rowsPerPage);
+            if (totalPages === 0) {
+                totalPages = 1;
+            } else {
+
+            }
             updatePaginationButtons();
         }
 
@@ -1068,7 +1073,7 @@
             const nextPageBtn = document.getElementById("nextPage");
 
             prevPageBtn.disabled = currentPage === 1;
-            nextPageBtn.disabled = currentPage === totalPages;
+            nextPageBtn.disabled = currentPage === totalPages || totalPages < 2; // Disable if only 1 page or less
 
             totalPagesElement.textContent = `of ${totalPages}`;
         }
