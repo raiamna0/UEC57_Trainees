@@ -59,9 +59,7 @@
        /* Create New Item Button styles 
 */
        .create-button {
-           /*text-align: right;*/ /* Align to the right */
-           /*margin-top: 20px;*/ /* Adjust the margin to move it up */
-           /*margin-right: 10px;*/
+         
            display: flex;
        }
 
@@ -1112,41 +1110,6 @@
         const currentPageElement = document.getElementById("currentPage");
         const totalPagesElement = document.getElementById("totalPages");
 
-
-
-
-
-        function updateTableVisibility() {
-            const rows = table.tBodies[0].rows;
-            let visibleRowCount = -1;
-
-            for (let i = 0; i < rows.length; i++) {
-                const row = rows[i];
-                const shouldShowRow = shouldShowRowBasedOnFilters(row);
-
-                if (shouldShowRow) {
-                    visibleRowCount++;
-                    if (visibleRowCount >= (currentPage - 1) * rowsPerPage && (visibleRowCount) < currentPage * rowsPerPage) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                } else {
-                    row.style.display = "none";
-                }
-                // Scroll to the top of the viewport
-                window.scrollTo(0, 0);
-            }
-
-            totalPages = Math.ceil(visibleRowCount / rowsPerPage);
-            if (totalPages === 0) {
-                totalPages = 1;
-            } else {
-               
-            }
-            updatePaginationButtons();
-        }
-
         function shouldShowRowBasedOnFilters(row) {
             // Implement your filtering logic here
             // Return true if the row should be displayed based on filters, false otherwise
@@ -1224,6 +1187,43 @@
             currentPage = page;
             updateTableVisibility();
             currentPageElement.textContent = `Page ${currentPage}`;
+        }
+
+        function updateTableVisibility() {
+            const rows = table.tBodies[0].rows;
+            let visibleRowCount = -1;
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const shouldShowRow = shouldShowRowBasedOnFilters(row);
+
+                if (shouldShowRow) {
+                    visibleRowCount++;
+                    if (visibleRowCount >= (currentPage - 1) * rowsPerPage && (visibleRowCount) < currentPage * rowsPerPage) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                } else {
+                    row.style.display = "none";
+                }
+                // Scroll to the top of the viewport
+                window.scrollTo(0, 0);
+            }
+
+            totalPages = Math.ceil(visibleRowCount / rowsPerPage);
+            if (totalPages === 0) {
+                totalPages = 1;
+
+            }
+            updatePaginationButtons();
+
+            // Check if there are no filtered results, and update the page text accordingly
+            if (totalPages === 1 && currentPage > 1) {
+                currentPageElement.textContent = `Page 1`;
+
+            } else {
+            }
         }
 
         const prevPageBtn = document.getElementById("prevPage");
